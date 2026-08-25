@@ -390,6 +390,19 @@ html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
   html.motion .reveal,html.motion body:not(.is-reading) article,html.motion body:not(.is-reading) .sec{opacity:1;transform:none;transition:none}
 }
 </style></head><body>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111940698', 'ym');
+
+    ym(111940698, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/111940698" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 <header class="hero">
   <div class="hero-media" aria-hidden="true">
     <video autoplay muted loop playsinline preload="metadata" poster="images/hero-poster.webp">
@@ -1506,7 +1519,10 @@ html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
     }
     if (opts.hash !== false) {
       var h = "#kw=" + encodeURIComponent(kw);
-      if (location.hash !== h) history.pushState({ kw: kw }, "", h);
+      if (location.hash !== h) {
+        history.pushState({ kw: kw }, "", h);
+        metrikaHit();
+      }
     }
   }
 
@@ -1515,6 +1531,7 @@ html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
     setFilter("");
     if (opts.hash !== false && /^#kw=/i.test(location.hash)) {
       history.pushState({ kw: null }, "", location.pathname + location.search);
+      metrikaHit();
     }
   }
 
@@ -1624,6 +1641,10 @@ html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
     });
   }
 
+  function metrikaHit() {
+    if (typeof ym === "function") ym(111940698, "hit", location.href);
+  }
+
   function openReader(id, pushHash) {
     var idx = indexOfId(id);
     if (idx < 0) return;
@@ -1646,6 +1667,7 @@ html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
     if (pushHash !== false) {
       if (location.hash !== "#" + id) {
         history.pushState({ reader: id }, "", "#" + id);
+        metrikaHit();
       }
     }
     window.scrollTo(0, 0);
@@ -1668,6 +1690,7 @@ html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
     rbProg.style.width = "0%";
     if (pushHash !== false) {
       history.pushState({ reader: null }, "", location.pathname + location.search);
+      metrikaHit();
     }
     window.scrollTo(0, listScrollY);
   }
@@ -1872,6 +1895,7 @@ html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
       closeReader(false);
       if (activeFilter) clearFilter({ hash: false });
     }
+    metrikaHit();
   });
 
   articles.forEach(function (article) {
