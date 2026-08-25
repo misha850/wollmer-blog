@@ -41,6 +41,9 @@
   try {
     var t = localStorage.getItem("wb-theme-2");
     document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("motion");
+    }
   } catch (e) {
     document.documentElement.setAttribute("data-theme", "dark");
   }
@@ -72,9 +75,20 @@ i,.s{font-family:"Noto Serif",Georgia,serif;font-style:italic}
 /* Full-bleed panoramic hero */
 .hero{position:relative;min-height:min(92vh,920px);display:flex;flex-direction:column;color:#fff;overflow:hidden;background:var(--hero-fade)}
 .hero-media{position:absolute;inset:0;overflow:hidden}
-.hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;object-position:center 42%;transform:scale(1.02)}
-@keyframes heroKen{from{transform:scale(1)}to{transform:scale(1.08)}}
-@media(prefers-reduced-motion:reduce){.hero-media img,.hero-media video{animation:none}}
+.hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;object-position:center 42%;transform:scale(1.04);animation:heroKen 28s ease-in-out infinite alternate}
+@keyframes heroKen{from{transform:scale(1.04)}to{transform:scale(1.12)}}
+@keyframes rise{to{opacity:var(--rise-to,1);transform:none}}
+.hero-top{opacity:0;animation:rise .75s cubic-bezier(.16,1,.3,1) .08s forwards}
+.hero-copy .hero-kicker,.hero-copy h1,.hero-copy .hero-lead,.hero-copy .hero-cta{opacity:0;transform:translate3d(0,32px,0);animation:rise .95s cubic-bezier(.16,1,.3,1) forwards}
+.hero-copy .hero-kicker{--rise-to:.75;animation-delay:.2s}
+.hero-copy h1{animation-delay:.34s}
+.hero-copy .hero-lead{--rise-to:.92;animation-delay:.48s}
+.hero-copy .hero-cta{animation-delay:.62s}
+@media(prefers-reduced-motion:reduce){
+  .hero-media img,.hero-media video{animation:none}
+  .hero-top,.hero-copy .hero-kicker,.hero-copy h1,.hero-copy .hero-lead,.hero-copy .hero-cta{animation:none;opacity:1;transform:none}
+  .hero-copy .hero-kicker{opacity:.75}
+}
 .hero-dim{position:absolute;inset:0;background:
   linear-gradient(90deg,rgba(14,15,17,.78) 0%,rgba(14,15,17,.38) 52%,rgba(14,15,17,.18) 100%),
   linear-gradient(180deg,rgba(14,15,17,.4) 0%,transparent 32%,transparent 52%,var(--hero-fade) 100%);
@@ -285,7 +299,7 @@ body.is-reading .reader-bar{display:flex;align-items:center;gap:12px;position:fi
 .reader-bar .rb-nav{display:flex;align-items:center;gap:2px;color:var(--grey);font-size:13.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .reader-bar .rb-hint{display:none;color:var(--grey);font-size:12.5px;margin-left:4px}
 body:not(.is-reading) .feed-hint{display:none}
-body.is-reading .feed-hint,body.is-reading>.hero,body.is-reading>.browse,body.is-reading>.browse-nav-wrap,body.is-reading .sec,body.is-reading .contact,body.is-reading .kw-index,body.is-reading .site-foot,body.is-reading article:not(.is-open):not(.is-stream){display:none!important}
+body.is-reading .feed-hint,body.is-reading>.hero,body.is-reading>.browse,body.is-reading>.browse-nav-wrap,body.is-reading .film,body.is-reading .sec,body.is-reading .contact,body.is-reading .kw-index,body.is-reading .site-foot,body.is-reading article:not(.is-open):not(.is-stream){display:none!important}
 body.is-reading .wrap{max-width:none;padding:52px 0 80px;min-height:100vh}
 body.is-reading article.is-open{margin:0;border-radius:0;box-shadow:none}
 body.is-reading article.is-open .read-cta{display:none}
@@ -295,7 +309,10 @@ body.is-reading article.is-open .in p,body.is-reading article.is-open .in li{fon
 /* Catalog cards — full-width covers (1200×630) */
 body:not(.is-reading) article{display:flex;flex-direction:column;cursor:pointer}
 body:not(.is-reading) article:hover{transform:translateY(-3px);box-shadow:0 16px 40px var(--elev);border-color:color-mix(in srgb,var(--yel) 40%,var(--line))}
-body:not(.is-reading) article>img{width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;object-position:center;border-bottom:1.2px solid var(--line);border-right:0;max-height:none;min-height:0}
+html.motion body:not(.is-reading) article:hover{transform:none}
+html.motion body:not(.is-reading) article.is-in:hover{transform:translateY(-4px)}
+body:not(.is-reading) article>img{width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;object-position:center;border-bottom:1.2px solid var(--line);border-right:0;max-height:none;min-height:0;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+body:not(.is-reading) article:hover>img{transform:scale(1.05)}
 body:not(.is-reading) article .in{padding:18px 22px 20px;gap:10px;justify-content:flex-start}
 body:not(.is-reading) article .in>:not(.tag):not(h2):not(.lede):not(.read-cta):not(.acts):not(.kw-bar){display:none!important}
 body:not(.is-reading) article .in h2{font-size:20px;line-height:1.25}
@@ -314,6 +331,31 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
 }
 @media(min-width:901px){.reader-bar .rb-hint{display:inline}}
 @media(max-width:600px){.in{padding:20px 18px 24px}.in h2{font-size:21px}body.is-reading article.is-open .in{padding:20px 18px 36px}}
+.film{position:relative;height:min(56vh,500px);overflow:hidden;background:#09090b;margin:8px 20px 36px;border-radius:22px}
+.film video{width:100%;height:100%;object-fit:cover;object-position:center;display:block;animation:heroKen 26s ease-in-out infinite alternate}
+.film-veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,transparent 28%,transparent 58%,rgba(0,0,0,.5) 100%)}
+.film-cap{position:absolute;left:24px;right:24px;bottom:16%;z-index:1;margin:0;text-align:center;font:600 12.5px/1.45 "LT Wave Text",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 10px 28px rgba(0,0,0,.55)}
+.film-mid{height:min(48vh,420px)}
+body:not(.is-reading) .wrap .film{grid-column:1/-1;margin:8px 0 28px}
+html.motion .reveal{opacity:0;transform:translate3d(0,36px,0)}
+html.motion .reveal.is-in{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+html.motion body:not(.is-reading) article{opacity:0;transform:translate3d(0,28px,0)}
+html.motion body:not(.is-reading) article.is-in{opacity:1;transform:none;transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1),box-shadow .2s ease,border-color .2s ease,background-color .25s ease}
+html.motion body:not(.is-reading) .sec{opacity:0;transform:translate3d(0,16px,0)}
+html.motion body:not(.is-reading) .sec.is-in{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+html.motion .browse-panel.is-in .browse-stat{animation:rise .7s cubic-bezier(.16,1,.3,1) both}
+html.motion .browse-panel.is-in .browse-stat:nth-child(1){animation-delay:.04s}
+html.motion .browse-panel.is-in .browse-stat:nth-child(2){animation-delay:.12s}
+html.motion .browse-panel.is-in .browse-stat:nth-child(3){animation-delay:.2s}
+html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
+@media(max-width:700px){
+  .film{margin:8px 14px 24px;height:min(42vh,340px);border-radius:16px}
+  .film-cap{font-size:11px;letter-spacing:.1em;bottom:14%}
+}
+@media(prefers-reduced-motion:reduce){
+  .film video{animation:none}
+  html.motion .reveal,html.motion body:not(.is-reading) article,html.motion body:not(.is-reading) .sec{opacity:1;transform:none;transition:none}
+}
 </style></head><body>
 <header class="hero">
   <div class="hero-media" aria-hidden="true">
@@ -339,7 +381,7 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
   </div>
 </header>
 <section class="browse" id="browse" aria-label="Об авторе и навигация по блогу">
-  <div class="browse-panel">
+  <div class="browse-panel reveal">
     <div class="browse-top">
       <img class="browse-avatar" src="images/aymautov.jpg" alt="Михаил Аймаутов" width="64" height="64" decoding="async">
       <div class="browse-who">
@@ -386,6 +428,13 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
     <a href="#contact">Сотрудничество</a>
   </nav>
 </div>
+<section class="film reveal" aria-label="Видео Wollmer">
+  <video muted loop playsinline preload="metadata">
+    <source src="images/cinematic.webm" type="video/webm">
+  </video>
+  <div class="film-veil" aria-hidden="true"></div>
+  <p class="film-cap">Wollmer · продукты, которые обслуживает ИТ</p>
+</section>
 <main class="wrap"><h2 class="sec" id="s1"><span>Вход</span></h2><article id="p1"><img src="covers/p01.png" alt="Зачем этот канал" loading="lazy" width="1200" height="630"><div class="in"><div class="tag"><span class="pill">Вход</span><span class="num">01</span></div><h2>Зачем этот канал</h2><p>На ревью нормальная практика — «давай за три минутки». И это правильно, у команды нет времени слушать, как я неделю искал причину.</p>
 <p>Но наружу тогда выходит только вывод: «сделали форму», «починили телефонию». А самое интересное остаётся за скобками — почему решение именно такое, какие были варианты и что сломалось по дороге.</p>
 <p>Вот про это и буду писать. Здесь можно подробно.</p>
@@ -689,7 +738,15 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
 <p>Сами ключи не живут в переписке. Для них есть Passwork с личными и общими папками.</p>
 <p>Когда я выдаю доступ, я кладу его в именную папку в Passwork, а не отправляю сообщением. Сообщение остаётся в истории чата навсегда.</p>
 <h3>Просьба</h3>
-<p>Если вам когда-то присылали пароль или ключ в личку — не пересылайте дальше и скажите мне. Перевыпустим и положим куда надо.</p></div></article><h2 class="sec" id="s18"><span>CRM и доставка</span></h2><article id="p18"><img src="covers/p18.png" alt="Заказ, который не доехал до склада" loading="lazy" width="1200" height="630"><div class="in"><div class="tag"><span class="pill">Грабли</span><span class="num">18</span></div><h2>Заказ, который не доехал до склада</h2><p>Разбор ошибки, которая повторялась трижды — и почему это была не случайность.</p>
+<p>Если вам когда-то присылали пароль или ключ в личку — не пересылайте дальше и скажите мне. Перевыпустим и положим куда надо.</p></div></article>
+<section class="film film-mid reveal" aria-label="Wollmer JD500">
+  <video muted loop playsinline preload="none">
+    <source src="images/cinematic-2.webm" type="video/webm">
+  </video>
+  <div class="film-veil" aria-hidden="true"></div>
+  <p class="film-cap">Динамика продукта · Wollmer</p>
+</section>
+<h2 class="sec" id="s18"><span>CRM и доставка</span></h2><article id="p18"><img src="covers/p18.png" alt="Заказ, который не доехал до склада" loading="lazy" width="1200" height="630"><div class="in"><div class="tag"><span class="pill">Грабли</span><span class="num">18</span></div><h2>Заказ, который не доехал до склада</h2><p>Разбор ошибки, которая повторялась трижды — и почему это была не случайность.</p>
 <h3>Симптом</h3>
 <p>Менеджер оформляет заказ на новый товар. В CRM он создаётся нормально. В МойСклад не попадает: не получает идентификатор ни через пять минут, ни через сутки.</p>
 <p>При этом через другую карточку того же товара — работает.</p>
@@ -1083,13 +1140,13 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
 <p>Меня в поздравлении назвали человеком, к которому приходят с болью и уходят с решением. Это очень точно про то, что мне нравится в работе. Но работает это только в обе стороны: без ваших подробных заявок половина этих задач так и осталась бы «ну там что-то глючит».</p>
 <p>Так что спасибо за поздравления — и спасибо за задачи. Продолжаем)</p></div></article>
 </main>
-<section class="kw-index" id="keywords" aria-label="Темы блога">
+<section class="kw-index reveal" id="keywords" aria-label="Темы блога">
   <h2>Темы блога</h2>
   <p>Выберите тему — ниже останутся только подходящие статьи. Из статьи по тегу можно сразу открыть связанный разбор.</p>
   <div class="kw-cloud" id="kwCloud"></div>
 </section>
 <section class="contact" id="contact" aria-label="Контакты и сотрудничество">
-  <div class="contact-card">
+  <div class="contact-card reveal">
     <h2>Сотрудничество и интеграции</h2>
     <p>Если нужна помощь с автоматизацией, настройкой интеграций (Битрикс24, МойСклад, телефония, CRM и доставка) или хотите обсудить коллаборацию по блогу — напишите. Разберём задачу и предложим рабочую схему.</p>
     <div class="contact-links">
@@ -1890,6 +1947,40 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
 
   buildKeywordCloud();
   buildRail();
+
+  (function bindMotion() {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var targets = [];
+    document.querySelectorAll(".reveal, .sec").forEach(function (el) { targets.push(el); });
+    articles.forEach(function (el) { targets.push(el); });
+    if (reduce) {
+      document.documentElement.classList.remove("motion");
+      targets.forEach(function (el) { el.classList.add("is-in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        if (el.tagName === "ARTICLE") {
+          el.style.transitionDelay = (articles.indexOf(el) % 2) * 0.08 + "s";
+        }
+        el.classList.add("is-in");
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach(function (el) { io.observe(el); });
+
+    var films = document.querySelectorAll(".film video");
+    var vio = new IntersectionObserver(function (ents) {
+      ents.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) v.play().catch(function () {});
+        else v.pause();
+      });
+    }, { threshold: 0.25 });
+    films.forEach(function (v) { vio.observe(v); });
+  })();
 
   document.querySelectorAll(".browse-tags .tag-filter").forEach(function (btn) {
     btn.addEventListener("click", function () {
