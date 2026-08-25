@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-Host: misha850.github.io
-Sitemap: https://misha850.github.io/wollmer-blog/sitemap.xml
