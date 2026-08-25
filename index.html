@@ -274,7 +274,8 @@ body.is-reading .kw-index{display:none!important}
 
 .reader-rail{display:none}
 .rail-head{padding:16px 16px 12px;border-bottom:1.2px solid var(--line);font:600 12.5px "LT Wave Text",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
-.rail-list{flex:1;overflow-y:auto;padding:10px;overscroll-behavior:contain}
+.rail-list{flex:1;overflow-y:auto;padding:10px;overscroll-behavior:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rail-list::-webkit-scrollbar{display:none}
 .rail-item{display:grid;grid-template-columns:112px 1fr;gap:10px;align-items:center;width:100%;text-align:left;margin:0 0 8px;padding:6px;border:1px solid transparent;border-radius:14px;background:var(--card);color:var(--ink);cursor:pointer;font:inherit}
 .rail-item:hover{border-color:color-mix(in srgb,var(--yel) 45%,var(--line));background:color-mix(in srgb,var(--yel) 10%,var(--card))}
 .rail-item.on{border-color:var(--yel);background:color-mix(in srgb,var(--yel) 22%,var(--card));box-shadow:0 0 0 1px var(--yel)}
