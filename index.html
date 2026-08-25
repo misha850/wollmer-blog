@@ -69,7 +69,7 @@ i,.s{font-family:"Noto Serif",Georgia,serif;font-style:italic}
 /* Full-bleed panoramic hero */
 .hero{position:relative;min-height:min(92vh,920px);display:flex;flex-direction:column;color:#fff;overflow:hidden;background:#0E0F11}
 .hero-media{position:absolute;inset:0;overflow:hidden}
-.hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;object-position:center 28%;transform:scale(1);animation:heroKen 22s ease-out forwards;will-change:transform}
+.hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.02)}
 @keyframes heroKen{from{transform:scale(1)}to{transform:scale(1.08)}}
 @media(prefers-reduced-motion:reduce){.hero-media img,.hero-media video{animation:none}}
 .hero-dim{position:absolute;inset:0;background:
@@ -196,6 +196,38 @@ body.is-filtering article.is-kw-hidden{display:none!important}
 .kw-cloud button:hover,.kw-cloud button.on{border-color:var(--yel);background:color-mix(in srgb,var(--yel) 24%,var(--paper))}
 .kw-cloud button .n{color:var(--grey);font-weight:600;margin-left:4px}
 body.is-reading .search-bar,body.is-reading .kw-index{display:none!important}
+
+.reader-rail{display:none}
+.rail-head{padding:14px 16px 12px;border-bottom:1.2px solid var(--line);font:600 12.5px "LT Wave Text",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
+.rail-list{flex:1;overflow-y:auto;padding:8px;overscroll-behavior:contain}
+.rail-item{display:block;width:100%;text-align:left;margin:0 0 4px;padding:10px 12px;border:0;border-radius:12px;background:transparent;color:var(--ink);cursor:pointer;font:inherit}
+.rail-item:hover{background:var(--soft)}
+.rail-item.on{background:color-mix(in srgb,var(--yel) 28%,var(--paper))}
+.rail-item .rn{display:block;font:600 11.5px "LT Wave Text",sans-serif;color:var(--grey);margin-bottom:3px;font-variant-numeric:tabular-nums}
+.rail-item .rt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font:600 13.5px "LT Wave Text",sans-serif;line-height:1.3}
+.next-nav{margin-top:8px;padding-top:18px;border-top:1.2px solid var(--soft)}
+.next-nav button{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;margin:0;padding:16px 18px;border:1.2px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);cursor:pointer;text-align:left;font:inherit;transition:border-color .15s,transform .12s,background .15s}
+.next-nav button:hover,.next-nav button:focus-visible{border-color:var(--yel);background:color-mix(in srgb,var(--yel) 16%,var(--paper));transform:translateY(-1px);outline:none}
+.next-nav .nn-label{font:600 12.5px "LT Wave Text",sans-serif;letter-spacing:.04em;text-transform:uppercase;color:var(--grey)}
+.next-nav .nn-title{font:600 17px "LT Wave Text",sans-serif;line-height:1.3}
+.next-nav .nn-hint{font-size:13.5px;color:var(--grey)}
+body.is-reading article.is-stream{display:block!important;margin:0 0 28px;border-radius:16px;box-shadow:0 18px 50px var(--shadow)}
+body.is-reading article.is-stream .read-cta{display:none}
+body.is-reading article.is-stream .in{padding:28px 34px 40px;gap:16px}
+body.is-reading article.is-stream .in h2{font-size:clamp(26px,4vw,34px);line-height:1.18;margin:4px 0 6px}
+body.is-reading article.is-stream .in p,body.is-reading article.is-stream .in li{font-size:18px;line-height:1.7}
+@media(min-width:960px){
+  body.is-reading .reader-rail{display:flex;flex-direction:column;position:fixed;z-index:25;left:0;top:52px;bottom:0;width:300px;background:var(--paper);border-right:1.2px solid var(--line)}
+  body.is-reading .wrap{margin-left:300px;max-width:none;padding:68px 32px 100px;min-height:100vh;box-sizing:border-box}
+  body.is-reading article.is-open,body.is-reading article.is-stream{max-width:720px;margin-left:auto;margin-right:auto}
+  body.is-reading .reader-bar{padding-left:316px}
+}
+@media(max-width:959px){
+  body.is-reading .reader-rail{display:none!important}
+}
+@media(max-width:600px){
+  body.is-reading article.is-stream .in{padding:20px 18px 36px}
+}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:20;box-shadow:0 8px 24px var(--elev)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .read-cta{align-self:flex-start;margin-top:4px;padding:9px 16px;border:0;border-radius:10px;background:var(--yel);color:#1A1B1C;font:600 14.5px "LT Wave Text",sans-serif;cursor:pointer}
@@ -211,7 +243,7 @@ body.is-reading .reader-bar{display:flex;align-items:center;gap:12px;position:fi
 .reader-bar .rb-nav{display:flex;align-items:center;gap:2px;color:var(--grey);font-size:13.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .reader-bar .rb-hint{display:none;color:var(--grey);font-size:12.5px;margin-left:4px}
 body:not(.is-reading) .feed-hint{display:block;max-width:760px;margin:-18px auto 28px;padding:0 20px;color:var(--grey);font-size:14.5px}
-body.is-reading .feed-hint,body.is-reading>.hero,body.is-reading>.intro,body.is-reading>nav,body.is-reading .sec,body.is-reading .contact,body.is-reading .kw-index,body.is-reading .site-foot,body.is-reading article:not(.is-open){display:none!important}
+body.is-reading .feed-hint,body.is-reading>.hero,body.is-reading>.intro,body.is-reading>nav,body.is-reading .sec,body.is-reading .contact,body.is-reading .kw-index,body.is-reading .site-foot,body.is-reading article:not(.is-open):not(.is-stream){display:none!important}
 body.is-reading .wrap{max-width:720px;padding:68px 20px 100px;min-height:100vh}
 body.is-reading article.is-open{margin:0;border-radius:16px;box-shadow:0 18px 50px var(--shadow)}
 body.is-reading article.is-open .read-cta{display:none}
@@ -243,7 +275,9 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
 </style></head><body>
 <header class="hero">
   <div class="hero-media" aria-hidden="true">
-    <img src="images/hero.jpg" alt="" width="1920" height="900" decoding="async" fetchpriority="high">
+    <video autoplay muted loop playsinline preload="metadata" poster="images/hero-poster.webp">
+      <source src="images/hero.webm" type="video/webm">
+    </video>
   </div>
   <div class="hero-dim" aria-hidden="true"></div>
   <div class="hero-inner">
@@ -274,7 +308,7 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
   <div class="meta"><div><b>35</b>постов</div><div><b>1472</b>задачи за полтора года</div><div><b>2025—2026</b>период</div><div><b>Михаил Аймаутов</b>автор · ИТ Wollmer</div></div>
 </section>
 <nav><a href="#s1">Вход</a><a href="#s4">Возвраты</a><a href="#s8">Телефония</a><a href="#s11">Инфраструктура</a><a href="#s14">Доступы</a><a href="#s18">CRM и доставка</a><a href="#s23">Обращения</a><a href="#s26">Данные и ИИ</a><a href="#s32">Боты и планы</a><a href="#keywords">Темы</a><a href="#contact">Сотрудничество</a></nav>
-<p class="feed-hint">Список постов ниже — нажмите карточку или «Читать». В режиме чтения: Esc — к списку, ← → — соседние посты. Ключевые слова ведут к связанным статьям.</p>
+<p class="feed-hint">Нажмите карточку или «Читать» — статья откроется справа, слева останется короткий список для переключения. В конце поста — следующая, либо просто листайте вниз.</p>
 <div class="search-bar" id="searchBar">
   <label for="postSearch">Поиск по ключевым словам и заголовкам</label>
   <div class="search-row">
@@ -997,6 +1031,10 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
 </section>
 <footer class="site-foot"><span class="s">Аймаутов Михаил · Wollmer ИТ · блог для ИТ-специалистов</span><span><a href="https://t.me/AymautovMikhail" target="_blank" rel="noopener noreferrer">Telegram</a> · <a href="tel:+79502700556">+7 950 270-05-56</a></span></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<aside class="reader-rail" id="readerRail" hidden aria-label="Список статей">
+  <div class="rail-head">Архив · <span id="railCount">35</span></div>
+  <div class="rail-list" id="railList"></div>
+</aside>
 <div class="reader-bar" id="readerBar" hidden>
   <button type="button" class="rb-back" id="rbBack" aria-label="К списку постов">← К списку</button>
   <div class="rb-prog" aria-hidden="true"><i id="rbProg"></i></div>
@@ -1061,6 +1099,9 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
   var kwCloud = document.getElementById("kwCloud");
   var activeFilter = "";
   var readerBar = document.getElementById("readerBar");
+  var readerRail = document.getElementById("readerRail");
+  var railList = document.getElementById("railList");
+  var railCount = document.getElementById("railCount");
   var rbProg = document.getElementById("rbProg");
   var rbPos = document.getElementById("rbPos");
   var rbPrev = document.getElementById("rbPrev");
@@ -1069,6 +1110,7 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
   var metaTheme = document.getElementById("metaThemeColor");
   var currentId = null;
   var listScrollY = 0;
+  var streamBusy = false;
 
   function effectiveTheme() {
     var t = document.documentElement.getAttribute("data-theme");
@@ -1431,12 +1473,18 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
       listScrollY = window.scrollY;
     }
     currentId = id;
-    articles.forEach(function (a) { a.classList.toggle("is-open", a.id === id); });
+    articles.forEach(function (a) {
+      var on = a.id === id;
+      a.classList.toggle("is-open", on);
+      a.classList.toggle("is-stream", on);
+    });
     document.body.classList.add("is-reading");
     readerBar.hidden = false;
+    if (readerRail) readerRail.hidden = false;
     rbPos.textContent = (idx + 1) + " / " + articles.length;
     rbPrev.disabled = idx <= 0;
     rbNext.disabled = idx >= articles.length - 1;
+    syncRail(id);
     if (pushHash !== false) {
       if (location.hash !== "#" + id) {
         history.pushState({ reader: id }, "", "#" + id);
@@ -1453,8 +1501,11 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
   function closeReader(pushHash) {
     if (!document.body.classList.contains("is-reading")) return;
     document.body.classList.remove("is-reading");
-    articles.forEach(function (a) { a.classList.remove("is-open"); });
+    articles.forEach(function (a) {
+      a.classList.remove("is-open", "is-stream");
+    });
     readerBar.hidden = true;
+    if (readerRail) readerRail.hidden = true;
     currentId = null;
     rbProg.style.width = "0%";
     if (pushHash !== false) {
@@ -1463,11 +1514,160 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
     window.scrollTo(0, listScrollY);
   }
 
+  function appendNextArticle() {
+    if (!document.body.classList.contains("is-reading") || streamBusy) return false;
+    var streamed = articles.filter(function (a) {
+      return a.classList.contains("is-stream");
+    });
+    if (!streamed.length) return false;
+    var last = streamed[streamed.length - 1];
+    var idx = indexOfId(last.id);
+    var next = articles[idx + 1];
+    if (!next || next.classList.contains("is-stream")) return false;
+    streamBusy = true;
+    next.classList.add("is-stream");
+    var countEl = next.querySelector(".acts .n");
+    if (countEl) countView(next, countEl);
+    requestAnimationFrame(function () { streamBusy = false; });
+    return true;
+  }
+
+  function focusStreamArticle(id, pushHash) {
+    var art = document.getElementById(id);
+    if (!art) return;
+    currentId = id;
+    articles.forEach(function (a) {
+      a.classList.toggle("is-open", a.id === id);
+    });
+    if (!art.classList.contains("is-stream")) {
+      art.classList.add("is-stream");
+    }
+    var idx = indexOfId(id);
+    rbPos.textContent = (idx + 1) + " / " + articles.length;
+    rbPrev.disabled = idx <= 0;
+    rbNext.disabled = idx >= articles.length - 1;
+    syncRail(id);
+    if (pushHash !== false && location.hash !== "#" + id) {
+      history.replaceState({ reader: id }, "", "#" + id);
+    }
+    art.scrollIntoView({ behavior: "smooth", block: "start" });
+    var countEl = art.querySelector(".acts .n");
+    if (countEl) countView(art, countEl);
+  }
+
+  function goNextFrom(id) {
+    var idx = indexOfId(id);
+    var next = articles[idx + 1];
+    if (!next) return;
+    if (document.body.classList.contains("is-reading")) {
+      if (!next.classList.contains("is-stream")) {
+        next.classList.add("is-stream");
+        var countEl = next.querySelector(".acts .n");
+        if (countEl) countView(next, countEl);
+      }
+      focusStreamArticle(next.id);
+    } else {
+      openReader(next.id);
+    }
+  }
+
   function openAdjacent(delta) {
     var idx = indexOfId(currentId);
     if (idx < 0) return;
     var next = articles[idx + delta];
-    if (next) openReader(next.id);
+    if (!next) return;
+    if (delta > 0) goNextFrom(currentId);
+    else openReader(next.id);
+  }
+
+  function syncRail(activeId) {
+    if (!railList) return;
+    Array.prototype.forEach.call(railList.querySelectorAll(".rail-item"), function (btn) {
+      btn.classList.toggle("on", btn.dataset.id === activeId);
+    });
+    var on = railList.querySelector(".rail-item.on");
+    if (on && on.scrollIntoView) {
+      on.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
+  }
+
+  function buildRail() {
+    if (!railList) return;
+    railList.innerHTML = "";
+    if (railCount) railCount.textContent = String(articles.length);
+    articles.forEach(function (a, i) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "rail-item";
+      btn.dataset.id = a.id;
+      btn.innerHTML =
+        '<span class="rn">' + String(i + 1).padStart(2, "0") + "</span>" +
+        '<span class="rt"></span>';
+      btn.querySelector(".rt").textContent = titleOf(a);
+      btn.addEventListener("click", function () {
+        openReader(a.id);
+      });
+      railList.appendChild(btn);
+    });
+  }
+
+  function buildNextNav(article) {
+    var idx = indexOfId(article.id);
+    var next = articles[idx + 1];
+    var wrap = document.createElement("div");
+    wrap.className = "next-nav";
+    if (!next) {
+      wrap.innerHTML =
+        '<button type="button" class="nn-end"><span class="nn-label">Конец архива</span>' +
+        '<span class="nn-title">Это последняя статья</span>' +
+        '<span class="nn-hint">Вернуться к списку или выбрать тему слева</span></button>';
+      wrap.querySelector("button").addEventListener("click", function (e) {
+        e.stopPropagation();
+        closeReader();
+      });
+      return wrap;
+    }
+    wrap.innerHTML =
+      '<button type="button"><span class="nn-label">Следующая статья</span>' +
+      '<span class="nn-title"></span>' +
+      '<span class="nn-hint">Или просто листайте вниз — подгрузится сама</span></button>';
+    wrap.querySelector(".nn-title").textContent = titleOf(next);
+    wrap.querySelector("button").addEventListener("click", function (e) {
+      e.stopPropagation();
+      goNextFrom(article.id);
+    });
+    return wrap;
+  }
+
+  function updateActiveFromScroll() {
+    if (!document.body.classList.contains("is-reading")) return;
+    var mid = window.innerHeight * 0.35;
+    var best = null;
+    var bestDist = Infinity;
+    articles.forEach(function (a) {
+      if (!a.classList.contains("is-stream")) return;
+      var r = a.getBoundingClientRect();
+      if (r.bottom < 80 || r.top > window.innerHeight) return;
+      var dist = Math.abs(r.top - mid);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = a;
+      }
+    });
+    if (best && best.id !== currentId) {
+      currentId = best.id;
+      articles.forEach(function (a) {
+        a.classList.toggle("is-open", a.id === best.id);
+      });
+      var idx = indexOfId(best.id);
+      rbPos.textContent = (idx + 1) + " / " + articles.length;
+      rbPrev.disabled = idx <= 0;
+      rbNext.disabled = idx >= articles.length - 1;
+      syncRail(best.id);
+      if (location.hash !== "#" + best.id) {
+        history.replaceState({ reader: best.id }, "", "#" + best.id);
+      }
+    }
   }
 
   rbBack.addEventListener("click", function () { closeReader(); });
@@ -1475,7 +1675,15 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
   rbNext.addEventListener("click", function () { openAdjacent(1); });
 
   window.addEventListener("scroll", function () {
-    if (document.body.classList.contains("is-reading")) updateProgress();
+    if (!document.body.classList.contains("is-reading")) return;
+    updateProgress();
+    updateActiveFromScroll();
+    var streamed = articles.filter(function (a) { return a.classList.contains("is-stream"); });
+    var last = streamed[streamed.length - 1];
+    if (last) {
+      var bottom = last.getBoundingClientRect().bottom;
+      if (bottom < window.innerHeight + 480) appendNextArticle();
+    }
   }, { passive: true });
 
   window.addEventListener("keydown", function (e) {
@@ -1570,6 +1778,9 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
     var related = buildRelated(article);
     if (related) box.appendChild(related);
 
+    var nextNav = buildNextNav(article);
+    if (nextNav) box.appendChild(nextNav);
+
     var countEl = acts.querySelector(".n");
     var shareBtn = acts.querySelector(".share");
 
@@ -1585,7 +1796,7 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
 
     article.addEventListener("click", function (e) {
       if (document.body.classList.contains("is-reading")) return;
-      if (e.target.closest("a, button, .share, .theme-toggle, .reacts, .kw-bar, .related")) return;
+      if (e.target.closest("a, button, .share, .theme-toggle, .reacts, .kw-bar, .related, .next-nav")) return;
       openReader(article.id);
     });
 
@@ -1612,6 +1823,7 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
   }
 
   buildKeywordCloud();
+  buildRail();
 
   document.querySelectorAll("nav a[href^='#s'], nav a[href='#keywords'], nav a[href='#contact']").forEach(function (a) {
     a.addEventListener("click", function () {
