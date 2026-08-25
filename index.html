@@ -67,6 +67,7 @@
   color-scheme:light;
 }
 html{background:var(--paper);scroll-behavior:smooth}
+html:has(body.is-reading){scroll-behavior:auto}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"LT Wave Text",-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;transition:background-color .25s ease,color .25s ease}
 h1,h2,h3{font-family:"LT Wave","LT Wave Text",sans-serif;font-weight:700;margin:0;text-wrap:balance;letter-spacing:-.005em}
@@ -294,7 +295,8 @@ body.is-reading article.is-stream .read-cta{display:none}
 body.is-reading article.is-stream .in{padding:32px 40px 48px;gap:16px;max-width:920px;margin:0 auto}
 body.is-reading article.is-stream .in h2{font-size:clamp(28px,3.4vw,40px);line-height:1.16;margin:4px 0 6px}
 body.is-reading article.is-stream .in p,body.is-reading article.is-stream .in li{font-size:18.5px;line-height:1.72}
-body.is-reading article.is-stream>img,body.is-reading article.is-open>img{width:100%;height:auto;max-height:min(46vh,520px);object-fit:cover;object-position:center;border-bottom:1.2px solid var(--line);display:block}
+body.is-reading article.is-stream>img,body.is-reading article.is-open>img{width:100%;height:min(46vh,520px);object-fit:cover;object-position:center;border-bottom:1.2px solid var(--line);display:block;background:var(--soft)}
+body.is-reading article.is-stream:not(.is-open){overflow-anchor:none}
 @media(min-width:1100px){
   body.is-reading .reader-rail{display:flex;flex-direction:column;position:fixed;z-index:25;right:0;left:auto;top:52px;bottom:0;width:360px;background:var(--card);border-left:1.2px solid var(--line);border-right:0}
   body.is-reading .wrap{width:auto;margin:0 360px 0 0;max-width:none;padding:52px 0 80px;min-height:100vh;box-sizing:border-box}
@@ -1738,9 +1740,11 @@ html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
     var next = articles[idx + 1];
     if (!next || next.classList.contains("is-stream")) return false;
     streamBusy = true;
+    var keepY = window.scrollY;
     next.classList.add("is-stream");
     var countEl = next.querySelector(".acts .n");
     if (countEl) countView(next, countEl);
+    if (window.scrollY !== keepY) window.scrollTo(0, keepY);
     requestAnimationFrame(function () { streamBusy = false; });
     return true;
   }
@@ -1799,9 +1803,13 @@ html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
       btn.classList.toggle("on", btn.dataset.id === activeId);
     });
     var on = railList.querySelector(".rail-item.on");
-    if (on && on.scrollIntoView) {
-      on.scrollIntoView({ block: "nearest", behavior: "smooth" });
-    }
+    if (!on) return;
+    var listTop = on.offsetTop;
+    var listH = on.offsetHeight;
+    var viewTop = railList.scrollTop;
+    var viewH = railList.clientHeight;
+    if (listTop < viewTop + 8) railList.scrollTop = listTop - 8;
+    else if (listTop + listH > viewTop + viewH - 8) railList.scrollTop = listTop + listH - viewH + 8;
   }
 
   function buildRail() {
