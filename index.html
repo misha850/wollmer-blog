@@ -389,7 +389,16 @@ html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
   .film video{animation:none}
   html.motion .reveal,html.motion body:not(.is-reading) article,html.motion body:not(.is-reading) .sec{opacity:1;transform:none;transition:none}
 }
-</style></head><body>
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LGQEEWYRWH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LGQEEWYRWH');
+</script>
+</head><body>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -1643,6 +1652,12 @@ html.motion .browse-panel.is-in .browse-stat:nth-child(4){animation-delay:.28s}
 
   function metrikaHit() {
     if (typeof ym === "function") ym(111940698, "hit", location.href);
+    if (typeof gtag === "function") {
+      gtag("event", "page_view", {
+        page_location: location.href,
+        page_path: location.pathname + location.search + location.hash
+      });
+    }
   }
 
   function openReader(id, pushHash) {
