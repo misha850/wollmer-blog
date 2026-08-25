@@ -110,21 +110,61 @@ i,.s{font-family:"Noto Serif",Georgia,serif;font-style:italic}
 .hero-cta{display:inline-flex;align-items:center;justify-content:center;margin-top:28px;padding:14px 28px;border:0;border-radius:999px;background:var(--yel);color:#1A1B1C;font:600 16px "LT Wave Text",sans-serif;text-decoration:none;cursor:pointer;transition:filter .15s,transform .15s}
 .hero-cta:hover{filter:brightness(.96);transform:translateY(-1px)}
 .hero-cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
-.intro{max-width:760px;margin:0 auto;padding:36px 20px 8px}
-.intro .byline{font-size:15.5px;line-height:1.55;color:var(--grey);max-width:60ch}
-.intro .byline strong{color:var(--ink)}
-.brand-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.brand-tags a,.brand-tags span{display:inline-flex;align-items:center;border:1.4px solid var(--line);border-radius:16px;padding:4px 12px;font-size:13.5px;font-family:"Noto Serif",Georgia,serif;font-style:italic;color:var(--ink);text-decoration:none;background:var(--card)}
-.brand-tags a:hover,.brand-tags a:focus-visible{border-color:var(--yel)}
-.meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1.2px solid var(--line);font-size:14.5px;color:var(--grey)}
-.meta b{font-family:"LT Wave",sans-serif;font-size:20px;display:block;font-variant-numeric:tabular-nums;color:var(--ink)}
+.browse{max-width:900px;margin:-56px auto 0;padding:0 20px 8px;position:relative;z-index:3}
+.browse-panel{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px 28px 22px;box-shadow:0 18px 50px var(--elev);display:grid;grid-template-columns:1fr;gap:18px}
+.browse-top{display:grid;grid-template-columns:auto 1fr;gap:14px 16px;align-items:center}
+.browse-avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid color-mix(in srgb,var(--yel) 55%,var(--line));background:var(--soft)}
+.browse-who{min-width:0}
+.browse-who .role{font:600 12px "LT Wave Text",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin:0 0 6px}
+.browse-who h2{margin:0;font:600 clamp(22px,3.2vw,28px) "LT Wave",sans-serif;letter-spacing:-.02em;line-height:1.15}
+.browse-who p{margin:8px 0 0;font-size:15px;line-height:1.5;color:var(--grey);max-width:52ch}
+.browse-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.browse-stat{padding:14px 14px 12px;border-radius:16px;background:var(--soft);border:1px solid transparent;min-width:0}
+.browse-stat b{display:block;font:600 clamp(18px,2.4vw,22px) "LT Wave",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--ink);line-height:1.1}
+.browse-stat span{display:block;margin-top:6px;font-size:12.5px;line-height:1.35;color:var(--grey)}
+.browse-stat:first-child{background:color-mix(in srgb,var(--yel) 22%,var(--soft));border-color:color-mix(in srgb,var(--yel) 35%,transparent)}
+.browse-tags{display:flex;flex-wrap:wrap;gap:8px}
+.browse-tags a,.browse-tags span,.browse-tags .tag-filter{display:inline-flex;align-items:center;padding:6px 12px;border-radius:999px;border:1.2px solid var(--line);background:var(--paper);color:var(--ink);text-decoration:none;font:600 13px "LT Wave Text",sans-serif;cursor:pointer;margin:0}
+.browse-tags a:hover,.browse-tags a:focus-visible,.browse-tags .tag-filter:hover,.browse-tags .tag-filter:focus-visible{border-color:var(--yel);background:color-mix(in srgb,var(--yel) 18%,var(--paper));outline:none}
+.browse-find{display:flex;flex-direction:column;gap:8px}
+.browse-find label{font-size:12.5px;color:var(--grey);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.search-row{display:flex;gap:8px;align-items:stretch}
+.search-row input{flex:1;min-width:0;padding:13px 16px;border:1.2px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);font:16px "LT Wave Text",sans-serif}
+.search-row input:focus{outline:2px solid var(--yel);outline-offset:2px;border-color:var(--yel)}
+.search-row .search-clear{padding:0 16px;border:1.2px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);font:600 14px "LT Wave Text",sans-serif;cursor:pointer;white-space:nowrap}
+.search-row .search-clear:hover{border-color:var(--yel)}
+.search-meta{font-size:13.5px;color:var(--grey);min-height:1.2em}
+.browse-nav-wrap{margin:14px auto 28px;max-width:900px;padding:0 20px;position:sticky;top:0;z-index:9}
+.browse-nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:8px;border-radius:18px;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(16px);border:1px solid var(--line);box-shadow:0 10px 32px var(--elev)}
+.browse-nav::-webkit-scrollbar{display:none}
+.browse-nav a{flex:0 0 auto;padding:9px 14px;border-radius:999px;text-decoration:none;color:var(--grey);font:600 13.5px "LT Wave Text",sans-serif;white-space:nowrap;transition:background .15s,color .15s}
+.browse-nav a:hover,.browse-nav a:focus-visible{color:var(--ink);background:var(--soft);outline:none}
+.browse-nav a[href="#contact"],.browse-nav a[href="#keywords"]{color:#1A1B1C;background:var(--yel)}
+@media(min-width:880px){
+  .browse-panel{grid-template-columns:1.15fr .85fr;align-items:start;column-gap:24px;row-gap:16px;padding:28px 30px 24px}
+  .browse-top{grid-column:1;grid-row:1}
+  .browse-stats{grid-column:2;grid-row:1;grid-template-columns:1fr 1fr;gap:10px;align-self:stretch}
+  .browse-tags{grid-column:1/-1}
+  .browse-find{grid-column:1/-1;max-width:100%}
+  .browse-stat{display:flex;flex-direction:column;justify-content:center;min-height:78px}
+}
+@media(max-width:879px){
+  .browse{margin-top:-28px;padding:0 14px}
+  .browse-panel{padding:18px 16px 16px;border-radius:20px;gap:16px}
+  .browse-top{grid-template-columns:56px 1fr;gap:12px 14px}
+  .browse-avatar{width:56px;height:56px}
+  .browse-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .browse-nav-wrap{padding:0 14px;margin:12px auto 22px}
+}
+@media(max-width:420px){
+  .browse-who p{font-size:14px}
+  .browse-stat{padding:12px}
+  .browse-stat span{font-size:12px}
+}
+body.is-reading .browse,body.is-reading .browse-nav-wrap{display:none!important}
 .pill.brand{border-color:var(--yel);color:var(--ink)}
 .tag{gap:10px;flex-wrap:wrap}
 .tag .pills{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
-nav{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1.2px solid var(--line);overflow-x:auto;white-space:nowrap;padding:11px 20px;margin-bottom:36px}
-nav::-webkit-scrollbar{display:none}
-nav a{color:var(--grey);text-decoration:none;font-size:14.5px;margin-right:20px;border-bottom:2px solid transparent;padding-bottom:2px}
-nav a:hover,nav a:focus-visible{color:var(--ink);border-color:var(--yel)}
 .sec{display:flex;align-items:center;gap:16px;margin:54px 0 18px;font-size:13.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);font-weight:600;font-family:"LT Wave Text",sans-serif}
 .sec::after{content:"";flex:1;height:1.2px;background:var(--line)}
 article{background:var(--card);border-radius:14px;overflow:hidden;margin-bottom:24px;scroll-margin-top:64px;border:1px solid transparent;transition:background-color .25s ease,border-color .25s ease,box-shadow .2s ease,transform .15s ease}
@@ -169,14 +209,7 @@ footer,.site-foot{margin-top:40px;padding:22px 20px 40px;border-top:1.2px solid 
 body.is-reading .contact{display:none!important}
 @media(max-width:600px){.contact-card{padding:22px 18px}}
 
-.search-bar{max-width:760px;margin:-8px auto 28px;padding:0 20px}
-.search-bar label{display:block;font-size:13px;color:var(--grey);margin-bottom:8px}
-.search-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.search-row input{flex:1;min-width:200px;padding:12px 14px;border:1.2px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:16px "LT Wave Text",sans-serif}
-.search-row input:focus{outline:2px solid var(--yel);outline-offset:2px;border-color:var(--yel)}
-.search-row .search-clear{padding:10px 14px;border:1.2px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);font:600 14px "LT Wave Text",sans-serif;cursor:pointer}
-.search-row .search-clear:hover{border-color:var(--yel)}
-.search-meta{margin-top:8px;font-size:13.5px;color:var(--grey);min-height:1.2em}
+.search-bar{display:none}
 body.is-filtering .sec{display:none!important}
 body.is-filtering article.is-kw-hidden{display:none!important}
 .kw-bar{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
@@ -195,7 +228,7 @@ body.is-filtering article.is-kw-hidden{display:none!important}
 .kw-cloud button{margin:0;padding:8px 12px;border:1.2px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font:600 13.5px "LT Wave Text",sans-serif;cursor:pointer}
 .kw-cloud button:hover,.kw-cloud button.on{border-color:var(--yel);background:color-mix(in srgb,var(--yel) 24%,var(--paper))}
 .kw-cloud button .n{color:var(--grey);font-weight:600;margin-left:4px}
-body.is-reading .search-bar,body.is-reading .kw-index{display:none!important}
+body.is-reading .kw-index{display:none!important}
 
 .reader-rail{display:none}
 .rail-head{padding:14px 16px 12px;border-bottom:1.2px solid var(--line);font:600 12.5px "LT Wave Text",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
@@ -242,8 +275,8 @@ body.is-reading .reader-bar{display:flex;align-items:center;gap:12px;position:fi
 .reader-bar .rb-prog>i{display:block;height:100%;width:0;background:var(--yel);border-radius:99px;box-shadow:0 0 12px rgba(255,198,0,.45)}
 .reader-bar .rb-nav{display:flex;align-items:center;gap:2px;color:var(--grey);font-size:13.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .reader-bar .rb-hint{display:none;color:var(--grey);font-size:12.5px;margin-left:4px}
-body:not(.is-reading) .feed-hint{display:block;max-width:760px;margin:-18px auto 28px;padding:0 20px;color:var(--grey);font-size:14.5px}
-body.is-reading .feed-hint,body.is-reading>.hero,body.is-reading>.intro,body.is-reading>nav,body.is-reading .sec,body.is-reading .contact,body.is-reading .kw-index,body.is-reading .site-foot,body.is-reading article:not(.is-open):not(.is-stream){display:none!important}
+body:not(.is-reading) .feed-hint{display:none}
+body.is-reading .feed-hint,body.is-reading>.hero,body.is-reading>.browse,body.is-reading>.browse-nav-wrap,body.is-reading .sec,body.is-reading .contact,body.is-reading .kw-index,body.is-reading .site-foot,body.is-reading article:not(.is-open):not(.is-stream){display:none!important}
 body.is-reading .wrap{max-width:720px;padding:68px 20px 100px;min-height:100vh}
 body.is-reading article.is-open{margin:0;border-radius:16px;box-shadow:0 18px 50px var(--shadow)}
 body.is-reading article.is-open .read-cta{display:none}
@@ -292,30 +325,57 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
       <p class="hero-kicker">Аймаутов Михаил · ИТ-блог</p>
       <h1>Как я автоматизировал <em>Wollmer</em></h1>
       <p class="hero-lead">Разборы ИТ-проектов: как задача решалась, какие были варианты и почему выбран именно этот.</p>
-      <a class="hero-cta" href="#s1">Читать архив</a>
+      <a class="hero-cta" href="#browse">К архиву</a>
     </div>
   </div>
 </header>
-<section class="intro" aria-label="Об авторе">
-  <p class="byline">Автор — <strong>Аймаутов Михаил</strong> (Михаил Аймаутов), ИТ-специалист Wollmer. Разборы автоматизации CRM и доставки, телефонии, доступов, инфраструктуры и ИИ — практика для ИТ-специалистов и команд.</p>
-  <div class="brand-tags" aria-label="Теги бренда и темы">
-    <a rel="tag" href="https://wollmer.ru/" title="Бренд Wollmer">#wollmer</a>
-    <span rel="tag">#Wollmer</span>
-    <span rel="tag">#ИТ</span>
-    <span rel="tag">#автоматизация</span>
-    <span rel="tag">#CRM</span>
+<section class="browse" id="browse" aria-label="Об авторе и навигация по архиву">
+  <div class="browse-panel">
+    <div class="browse-top">
+      <img class="browse-avatar" src="images/aymautov.jpg" alt="Михаил Аймаутов" width="64" height="64" decoding="async">
+      <div class="browse-who">
+        <p class="role">ИТ-специалист · Wollmer</p>
+        <h2>Аймаутов Михаил</h2>
+        <p>Разборы автоматизации CRM и доставки, телефонии, доступов, инфраструктуры и ИИ — практика для команд.</p>
+      </div>
+    </div>
+    <div class="browse-stats" aria-label="Факты об архиве">
+      <div class="browse-stat"><b>35</b><span>постов в архиве</span></div>
+      <div class="browse-stat"><b>1472</b><span>задачи за полтора года</span></div>
+      <div class="browse-stat"><b>2025—26</b><span>период кейсов</span></div>
+      <div class="browse-stat"><b>Wollmer</b><span>бренд и контекст</span></div>
+    </div>
+    <div class="browse-tags" aria-label="Темы">
+      <a rel="tag" href="https://wollmer.ru/" title="Бренд Wollmer">#wollmer</a>
+      <button type="button" class="tag-filter" data-kw="ИТ">#ИТ</button>
+      <button type="button" class="tag-filter" data-kw="автоматизация">#автоматизация</button>
+      <button type="button" class="tag-filter" data-kw="CRM">#CRM</button>
+      <button type="button" class="tag-filter" data-kw="Битрикс24">#Битрикс24</button>
+    </div>
+    <div class="browse-find" id="searchBar">
+      <label for="postSearch">Найти в архиве</label>
+      <div class="search-row">
+        <input type="search" id="postSearch" placeholder="CRM, телефония, ИИ, возвраты…" autocomplete="off" enterkeyhint="search">
+        <button type="button" class="search-clear" id="searchClear" hidden>Сбросить</button>
+      </div>
+      <div class="search-meta" id="searchMeta" aria-live="polite"></div>
+    </div>
   </div>
-  <div class="meta"><div><b>35</b>постов</div><div><b>1472</b>задачи за полтора года</div><div><b>2025—2026</b>период</div><div><b>Михаил Аймаутов</b>автор · ИТ Wollmer</div></div>
 </section>
-<nav><a href="#s1">Вход</a><a href="#s4">Возвраты</a><a href="#s8">Телефония</a><a href="#s11">Инфраструктура</a><a href="#s14">Доступы</a><a href="#s18">CRM и доставка</a><a href="#s23">Обращения</a><a href="#s26">Данные и ИИ</a><a href="#s32">Боты и планы</a><a href="#keywords">Темы</a><a href="#contact">Сотрудничество</a></nav>
-<p class="feed-hint">Нажмите карточку или «Читать» — статья откроется справа, слева останется короткий список для переключения. В конце поста — следующая, либо просто листайте вниз.</p>
-<div class="search-bar" id="searchBar">
-  <label for="postSearch">Поиск по ключевым словам и заголовкам</label>
-  <div class="search-row">
-    <input type="search" id="postSearch" placeholder="Например: CRM, телефония, ИИ, возвраты…" autocomplete="off" enterkeyhint="search">
-    <button type="button" class="search-clear" id="searchClear" hidden>Сбросить</button>
-  </div>
-  <div class="search-meta" id="searchMeta" aria-live="polite"></div>
+<div class="browse-nav-wrap">
+  <nav class="browse-nav" aria-label="Разделы архива">
+    <a href="#s1">Вход</a>
+    <a href="#s4">Возвраты</a>
+    <a href="#s8">Телефония</a>
+    <a href="#s11">Инфраструктура</a>
+    <a href="#s14">Доступы</a>
+    <a href="#s18">CRM</a>
+    <a href="#s23">Обращения</a>
+    <a href="#s26">Данные и ИИ</a>
+    <a href="#s32">Боты</a>
+    <a href="#keywords">Темы</a>
+    <a href="#contact">Сотрудничество</a>
+  </nav>
 </div>
 <main class="wrap"><h2 class="sec" id="s1"><span>Вход</span></h2><article id="p1"><img src="covers/p01.png" alt="Зачем этот канал" loading="lazy" width="1200" height="630"><div class="in"><div class="tag"><span class="pill">Вход</span><span class="num">01</span></div><h2>Зачем этот канал</h2><p>На ревью нормальная практика — «давай за три минутки». И это правильно, у команды нет времени слушать, как я неделю искал причину.</p>
 <p>Но наружу тогда выходит только вывод: «сделали форму», «починили телефонию». А самое интересное остаётся за скобками — почему решение именно такое, какие были варианты и что сломалось по дороге.</p>
@@ -1825,7 +1885,13 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
   buildKeywordCloud();
   buildRail();
 
-  document.querySelectorAll("nav a[href^='#s'], nav a[href='#keywords'], nav a[href='#contact']").forEach(function (a) {
+  document.querySelectorAll(".browse-tags .tag-filter").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      applyKeyword(btn.dataset.kw || btn.textContent.replace(/^#/, ""));
+    });
+  });
+
+  document.querySelectorAll(".browse-nav a").forEach(function (a) {
     a.addEventListener("click", function () {
       if (document.body.classList.contains("is-reading")) closeReader(false);
     });
