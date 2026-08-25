@@ -59,23 +59,32 @@
   color-scheme:dark;
 }
 :root[data-theme="light"]{color-scheme:light}
-html{background:var(--paper)}
+html{background:var(--paper);scroll-behavior:smooth}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"LT Wave Text",-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;transition:background-color .25s ease,color .25s ease}
 h1,h2,h3{font-family:"LT Wave","LT Wave Text",sans-serif;font-weight:700;margin:0;text-wrap:balance;letter-spacing:-.005em}
 p{margin:0}
 i,.s{font-family:"Noto Serif",Georgia,serif;font-style:italic}
 .wrap{max-width:760px;margin:0 auto;padding:0 20px 90px}
-header{background:var(--yel);color:var(--header-ink);padding:0 20px 46px;position:relative;overflow:hidden}
-header::after{content:"";position:absolute;inset:auto -10% -40% 40%;height:70%;background:radial-gradient(ellipse at center,rgba(255,255,255,.28),transparent 70%);pointer-events:none}
-.hin{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.top{display:flex;align-items:center;gap:14px;padding:22px 0 15px;border-bottom:1.2px solid rgba(26,27,28,.25);font-family:"Noto Serif",Georgia,serif;font-style:italic;font-size:19px}
-.top .avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(26,27,28,.18);background:#fff}
-.top-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
-.top b{font-family:"LT Wave Text",sans-serif;font-style:normal;font-weight:600;font-size:15px;letter-spacing:.04em}
-.theme-toggle{width:40px;height:40px;border-radius:50%;border:1.4px solid rgba(26,27,28,.28);background:rgba(255,255,255,.35);color:#1A1B1C;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;padding:0;transition:background .2s,transform .15s,border-color .2s}
-.theme-toggle:hover{background:rgba(255,255,255,.6);transform:translateY(-1px)}
-.theme-toggle:focus-visible{outline:2px solid #1A1B1C;outline-offset:2px}
+/* Full-bleed panoramic hero */
+.hero{position:relative;min-height:min(92vh,920px);display:flex;flex-direction:column;color:#fff;overflow:hidden;background:#0E0F11}
+.hero-media{position:absolute;inset:0;overflow:hidden}
+.hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;object-position:center 28%;transform:scale(1);animation:heroKen 22s ease-out forwards;will-change:transform}
+@keyframes heroKen{from{transform:scale(1)}to{transform:scale(1.08)}}
+@media(prefers-reduced-motion:reduce){.hero-media img,.hero-media video{animation:none}}
+.hero-dim{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(14,15,17,.82) 0%,rgba(14,15,17,.45) 48%,rgba(14,15,17,.25) 100%),
+  linear-gradient(180deg,rgba(14,15,17,.35) 0%,transparent 28%,rgba(14,15,17,.75) 100%);
+  pointer-events:none}
+.hero-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;max-width:1120px;width:100%;margin:0 auto;padding:0 28px 56px;box-sizing:border-box}
+.hero-top{display:flex;align-items:center;gap:14px;padding:22px 0;font-family:"Noto Serif",Georgia,serif;font-style:italic;font-size:18px}
+.hero-top .avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.35);background:#fff;flex-shrink:0}
+.hero-brand{display:flex;flex-direction:column;gap:2px;line-height:1.15}
+.hero-brand strong{font-family:"LT Wave Text",sans-serif;font-style:normal;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
+.hero-top .top-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
+.theme-toggle{width:40px;height:40px;border-radius:50%;border:1.4px solid var(--line);background:var(--card);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;padding:0;transition:background .2s,transform .15s,border-color .2s}
+.theme-toggle:hover{background:var(--soft);transform:translateY(-1px)}
+.theme-toggle:focus-visible{outline:2px solid var(--yel);outline-offset:2px}
 .theme-toggle svg{width:18px;height:18px}
 .theme-toggle .icon-sun{display:none}
 .theme-toggle .icon-moon{display:block}
@@ -90,17 +99,28 @@ header::after{content:"";position:absolute;inset:auto -10% -40% 40%;height:70%;b
 .reader-bar .theme-toggle{width:36px;height:36px;border-color:var(--line);background:var(--card);color:var(--ink)}
 .reader-bar .theme-toggle:hover{background:var(--soft)}
 .reader-bar .theme-toggle:focus-visible{outline-color:var(--yel)}
-header h1{font-size:clamp(34px,7vw,58px);line-height:1.04;margin:34px 0 0}
-header h1 em{display:block;font-weight:400;font-family:"Noto Serif",Georgia,serif}
-header p{margin-top:18px;max-width:52ch;font-size:18px}header .byline{margin-top:14px;max-width:60ch;font-size:15px;opacity:.92}
+.hero .theme-toggle{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff}
+.hero .theme-toggle:hover{background:rgba(255,255,255,.22);transform:translateY(-1px)}
+.hero .theme-toggle:focus-visible{outline:2px solid var(--yel);outline-offset:2px}
+.hero-copy{margin-top:auto;padding-bottom:8px;max-width:34em}
+.hero-kicker{font-size:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;opacity:.75;margin-bottom:14px;font-family:"LT Wave Text",sans-serif}
+.hero h1{font-size:clamp(40px,7.2vw,72px);line-height:1.02;margin:0;letter-spacing:-.02em;text-wrap:balance}
+.hero h1 em{font-style:italic;font-family:"Noto Serif",Georgia,serif;font-weight:400;color:var(--yel)}
+.hero-lead{margin-top:18px;font-size:clamp(17px,2.1vw,20px);line-height:1.5;max-width:28em;opacity:.92}
+.hero-cta{display:inline-flex;align-items:center;justify-content:center;margin-top:28px;padding:14px 28px;border:0;border-radius:999px;background:var(--yel);color:#1A1B1C;font:600 16px "LT Wave Text",sans-serif;text-decoration:none;cursor:pointer;transition:filter .15s,transform .15s}
+.hero-cta:hover{filter:brightness(.96);transform:translateY(-1px)}
+.hero-cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.intro{max-width:760px;margin:0 auto;padding:36px 20px 8px}
+.intro .byline{font-size:15.5px;line-height:1.55;color:var(--grey);max-width:60ch}
+.intro .byline strong{color:var(--ink)}
 .brand-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.brand-tags a,.brand-tags span{display:inline-flex;align-items:center;border:1.4px solid rgba(26,27,28,.35);border-radius:16px;padding:4px 12px;font-size:13.5px;font-family:"Noto Serif",Georgia,serif;font-style:italic;color:#1A1B1C;text-decoration:none;background:rgba(255,255,255,.28)}
-.brand-tags a:hover,.brand-tags a:focus-visible{background:rgba(255,255,255,.55)}
+.brand-tags a,.brand-tags span{display:inline-flex;align-items:center;border:1.4px solid var(--line);border-radius:16px;padding:4px 12px;font-size:13.5px;font-family:"Noto Serif",Georgia,serif;font-style:italic;color:var(--ink);text-decoration:none;background:var(--card)}
+.brand-tags a:hover,.brand-tags a:focus-visible{border-color:var(--yel)}
+.meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1.2px solid var(--line);font-size:14.5px;color:var(--grey)}
+.meta b{font-family:"LT Wave",sans-serif;font-size:20px;display:block;font-variant-numeric:tabular-nums;color:var(--ink)}
 .pill.brand{border-color:var(--yel);color:var(--ink)}
 .tag{gap:10px;flex-wrap:wrap}
 .tag .pills{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
-.meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:28px;padding-top:18px;border-top:1.2px solid rgba(26,27,28,.25);font-size:14.5px}
-.meta b{font-family:"LT Wave",sans-serif;font-size:20px;display:block;font-variant-numeric:tabular-nums}
 nav{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1.2px solid var(--line);overflow-x:auto;white-space:nowrap;padding:11px 20px;margin-bottom:36px}
 nav::-webkit-scrollbar{display:none}
 nav a{color:var(--grey);text-decoration:none;font-size:14.5px;margin-right:20px;border-bottom:2px solid transparent;padding-bottom:2px}
@@ -143,41 +163,68 @@ body.is-reading .reader-bar{display:flex;align-items:center;gap:12px;position:fi
 .reader-bar .rb-nav{display:flex;align-items:center;gap:2px;color:var(--grey);font-size:13.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .reader-bar .rb-hint{display:none;color:var(--grey);font-size:12.5px;margin-left:4px}
 body:not(.is-reading) .feed-hint{display:block;max-width:760px;margin:-18px auto 28px;padding:0 20px;color:var(--grey);font-size:14.5px}
-body.is-reading .feed-hint,body.is-reading>header,body.is-reading>nav,body.is-reading .sec,body.is-reading footer,body.is-reading article:not(.is-open){display:none!important}
+body.is-reading .feed-hint,body.is-reading>.hero,body.is-reading>.intro,body.is-reading>nav,body.is-reading .sec,body.is-reading footer,body.is-reading article:not(.is-open){display:none!important}
 body.is-reading .wrap{max-width:720px;padding:68px 20px 100px;min-height:100vh}
 body.is-reading article.is-open{margin:0;border-radius:16px;box-shadow:0 18px 50px var(--shadow)}
 body.is-reading article.is-open .read-cta{display:none}
 body.is-reading article.is-open .in{padding:28px 34px 40px;gap:16px}
 body.is-reading article.is-open .in h2{font-size:clamp(26px,4vw,34px);line-height:1.18;margin:4px 0 6px}
 body.is-reading article.is-open .in p,body.is-reading article.is-open .in li{font-size:18px;line-height:1.7}
-/* Catalog cards */
-body:not(.is-reading) article{display:grid;grid-template-columns:minmax(140px,210px) 1fr;align-items:stretch;cursor:pointer}
-body:not(.is-reading) article:hover{transform:translateY(-2px);box-shadow:0 14px 36px var(--elev);border-color:color-mix(in srgb,var(--yel) 35%,var(--line))}
-body:not(.is-reading) article>img{height:100%;min-height:148px;max-height:200px;object-fit:cover;border-bottom:0;border-right:1.2px solid var(--soft)}
-body:not(.is-reading) article .in{padding:18px 20px 18px;gap:10px;justify-content:center}
+/* Catalog cards — full-width covers (1200×630) */
+body:not(.is-reading) article{display:flex;flex-direction:column;cursor:pointer}
+body:not(.is-reading) article:hover{transform:translateY(-3px);box-shadow:0 16px 40px var(--elev);border-color:color-mix(in srgb,var(--yel) 40%,var(--line))}
+body:not(.is-reading) article>img{width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;object-position:center;border-bottom:1.2px solid var(--soft);border-right:0;max-height:none;min-height:0}
+body:not(.is-reading) article .in{padding:18px 22px 20px;gap:10px;justify-content:flex-start}
 body:not(.is-reading) article .in>:not(.tag):not(h2):not(.lede):not(.read-cta):not(.acts){display:none!important}
-body:not(.is-reading) article .in h2{font-size:19px;line-height:1.25}
+body:not(.is-reading) article .in h2{font-size:20px;line-height:1.25}
 body:not(.is-reading) article .lede{display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14.5px;line-height:1.45;color:var(--grey)}
 body:not(.is-reading) article .acts{border-top:0;padding-top:2px;margin-top:2px}
 body:not(.is-reading) .sec{margin:40px 0 14px}
 @media(max-width:700px){
-  body:not(.is-reading) article{grid-template-columns:1fr}
-  body:not(.is-reading) article>img{max-height:150px;min-height:120px;width:100%;border-right:0;border-bottom:1.2px solid var(--soft)}
+  .hero{min-height:min(88vh,780px)}
+  .hero-inner{padding:0 20px 40px}
+  .hero-copy{max-width:100%}
   body:not(.is-reading) article .in{padding:16px 16px 18px}
+  body:not(.is-reading) article .in h2{font-size:18px}
   .reader-bar .rb-hint{display:none!important}
-  .top b{display:none}
+  .hero-brand strong{font-size:12px}
 }
 @media(min-width:901px){.reader-bar .rb-hint{display:inline}}
 @media(max-width:600px){.in{padding:20px 18px 24px}.in h2{font-size:21px}body.is-reading article.is-open .in{padding:20px 18px 36px}}
-</style></head><body><header><div class="hin"><div class="top"><img class="avatar" src="images/aymautov.jpg" alt="Михаил Аймаутов — ИТ-специалист Wollmer" width="56" height="56" decoding="async">Блог <div class="top-actions"><button type="button" class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Светлая / тёмная тема"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button><b>WOLLMER · ИТ-отдел</b></div></div><h1>Как я автоматизировал<em>Wollmer</em></h1><p>Разборы ИТ-проектов: как задача решалась, какие были варианты и почему выбран именно этот. То, что не влезает в трёхминутное ревью.</p><p class="byline">Автор — <strong>Аймаутов Михаил</strong> (Михаил Аймаутов), ИТ-специалист Wollmer. Разборы автоматизации CRM и доставки, телефонии, доступов, инфраструктуры и ИИ — практика для ИТ-специалистов и команд.</p>
-<div class="brand-tags" aria-label="Теги бренда и темы">
-<a rel="tag" href="https://wollmer.ru/" title="Бренд Wollmer">#wollmer</a>
-<span rel="tag">#Wollmer</span>
-<span rel="tag">#ИТ</span>
-<span rel="tag">#автоматизация</span>
-<span rel="tag">#CRM</span>
-</div>
-<div class="meta"><div><b>35</b>постов</div><div><b>1472</b>задачи за полтора года</div><div><b>2025—2026</b>период</div><div><b>Михаил Аймаутов</b>автор · ИТ Wollmer</div></div></div></header><nav><a href="#s1">Вход</a><a href="#s4">Возвраты</a><a href="#s8">Телефония</a><a href="#s11">Инфраструктура</a><a href="#s14">Доступы</a><a href="#s18">CRM и доставка</a><a href="#s23">Обращения</a><a href="#s26">Данные и ИИ</a><a href="#s32">Боты и планы</a></nav>
+</style></head><body>
+<header class="hero">
+  <div class="hero-media" aria-hidden="true">
+    <img src="images/hero.jpg" alt="" width="1920" height="900" decoding="async" fetchpriority="high">
+  </div>
+  <div class="hero-dim" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-top">
+      <img class="avatar" src="images/aymautov.jpg" alt="Михаил Аймаутов — ИТ-специалист Wollmer" width="48" height="48" decoding="async">
+      <div class="hero-brand">Блог <strong>WOLLMER · ИТ</strong></div>
+      <div class="top-actions">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Светлая / тёмная тема"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+      </div>
+    </div>
+    <div class="hero-copy">
+      <p class="hero-kicker">Аймаутов Михаил · ИТ-блог</p>
+      <h1>Как я автоматизировал <em>Wollmer</em></h1>
+      <p class="hero-lead">Разборы ИТ-проектов: как задача решалась, какие были варианты и почему выбран именно этот.</p>
+      <a class="hero-cta" href="#s1">Читать архив</a>
+    </div>
+  </div>
+</header>
+<section class="intro" aria-label="Об авторе">
+  <p class="byline">Автор — <strong>Аймаутов Михаил</strong> (Михаил Аймаутов), ИТ-специалист Wollmer. Разборы автоматизации CRM и доставки, телефонии, доступов, инфраструктуры и ИИ — практика для ИТ-специалистов и команд.</p>
+  <div class="brand-tags" aria-label="Теги бренда и темы">
+    <a rel="tag" href="https://wollmer.ru/" title="Бренд Wollmer">#wollmer</a>
+    <span rel="tag">#Wollmer</span>
+    <span rel="tag">#ИТ</span>
+    <span rel="tag">#автоматизация</span>
+    <span rel="tag">#CRM</span>
+  </div>
+  <div class="meta"><div><b>35</b>постов</div><div><b>1472</b>задачи за полтора года</div><div><b>2025—2026</b>период</div><div><b>Михаил Аймаутов</b>автор · ИТ Wollmer</div></div>
+</section>
+<nav><a href="#s1">Вход</a><a href="#s4">Возвраты</a><a href="#s8">Телефония</a><a href="#s11">Инфраструктура</a><a href="#s14">Доступы</a><a href="#s18">CRM и доставка</a><a href="#s23">Обращения</a><a href="#s26">Данные и ИИ</a><a href="#s32">Боты и планы</a></nav>
 <p class="feed-hint">Список постов ниже — нажмите карточку или «Читать». В режиме чтения: Esc — к списку, ← → — соседние посты.</p>
 <main class="wrap"><h2 class="sec" id="s1"><span>Вход</span></h2><article id="p1"><img src="covers/p01.png" alt="Зачем этот канал" loading="lazy" width="1200" height="630"><div class="in"><div class="tag"><span class="pill">Вход</span><span class="num">01</span></div><h2>Зачем этот канал</h2><p>На ревью нормальная практика — «давай за три минутки». И это правильно, у команды нет времени слушать, как я неделю искал причину.</p>
 <p>Но наружу тогда выходит только вывод: «сделали форму», «починили телефонию». А самое интересное остаётся за скобками — почему решение именно такое, какие были варианты и что сломалось по дороге.</p>
