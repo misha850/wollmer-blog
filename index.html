@@ -168,6 +168,34 @@ footer,.site-foot{margin-top:40px;padding:22px 20px 40px;border-top:1.2px solid 
 .contact-links a:focus-visible{outline:2px solid var(--yel);outline-offset:2px}
 body.is-reading .contact{display:none!important}
 @media(max-width:600px){.contact-card{padding:22px 18px}}
+
+.search-bar{max-width:760px;margin:-8px auto 28px;padding:0 20px}
+.search-bar label{display:block;font-size:13px;color:var(--grey);margin-bottom:8px}
+.search-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search-row input{flex:1;min-width:200px;padding:12px 14px;border:1.2px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:16px "LT Wave Text",sans-serif}
+.search-row input:focus{outline:2px solid var(--yel);outline-offset:2px;border-color:var(--yel)}
+.search-row .search-clear{padding:10px 14px;border:1.2px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);font:600 14px "LT Wave Text",sans-serif;cursor:pointer}
+.search-row .search-clear:hover{border-color:var(--yel)}
+.search-meta{margin-top:8px;font-size:13.5px;color:var(--grey);min-height:1.2em}
+body.is-filtering .sec{display:none!important}
+body.is-filtering article.is-kw-hidden{display:none!important}
+.kw-bar{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.kw-bar .kw{margin:0;padding:5px 10px;border:1.2px solid var(--line);border-radius:999px;background:var(--soft);color:var(--ink);font:600 12.5px "LT Wave Text",sans-serif;cursor:pointer}
+.kw-bar .kw:hover,.kw-bar .kw:focus-visible{border-color:var(--yel);background:color-mix(in srgb,var(--yel) 22%,var(--paper));outline:none}
+.related{margin-top:8px;padding-top:16px;border-top:1.2px solid var(--soft);display:flex;flex-direction:column;gap:10px}
+.related-label{font:600 13px "LT Wave Text",sans-serif;color:var(--grey);letter-spacing:.02em;text-transform:uppercase}
+.related-list{display:flex;flex-direction:column;gap:6px}
+.related-list button{text-align:left;margin:0;padding:10px 12px;border:1.2px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);font:600 14.5px "LT Wave Text",sans-serif;cursor:pointer}
+.related-list button:hover,.related-list button:focus-visible{border-color:var(--yel);background:color-mix(in srgb,var(--yel) 18%,var(--paper));outline:none}
+.related-list button span{display:block;font:400 12.5px "LT Wave Text",sans-serif;color:var(--grey);margin-top:2px}
+.kw-index{max-width:760px;margin:40px auto 0;padding:0 20px 8px}
+.kw-index h2{font-size:24px;margin-bottom:8px}
+.kw-index>p{color:var(--grey);font-size:15.5px;margin-bottom:16px;max-width:52ch}
+.kw-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.kw-cloud button{margin:0;padding:8px 12px;border:1.2px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font:600 13.5px "LT Wave Text",sans-serif;cursor:pointer}
+.kw-cloud button:hover,.kw-cloud button.on{border-color:var(--yel);background:color-mix(in srgb,var(--yel) 24%,var(--paper))}
+.kw-cloud button .n{color:var(--grey);font-weight:600;margin-left:4px}
+body.is-reading .search-bar,body.is-reading .kw-index{display:none!important}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:20;box-shadow:0 8px 24px var(--elev)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .read-cta{align-self:flex-start;margin-top:4px;padding:9px 16px;border:0;border-radius:10px;background:var(--yel);color:#1A1B1C;font:600 14.5px "LT Wave Text",sans-serif;cursor:pointer}
@@ -183,7 +211,7 @@ body.is-reading .reader-bar{display:flex;align-items:center;gap:12px;position:fi
 .reader-bar .rb-nav{display:flex;align-items:center;gap:2px;color:var(--grey);font-size:13.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .reader-bar .rb-hint{display:none;color:var(--grey);font-size:12.5px;margin-left:4px}
 body:not(.is-reading) .feed-hint{display:block;max-width:760px;margin:-18px auto 28px;padding:0 20px;color:var(--grey);font-size:14.5px}
-body.is-reading .feed-hint,body.is-reading>.hero,body.is-reading>.intro,body.is-reading>nav,body.is-reading .sec,body.is-reading .contact,body.is-reading .site-foot,body.is-reading article:not(.is-open){display:none!important}
+body.is-reading .feed-hint,body.is-reading>.hero,body.is-reading>.intro,body.is-reading>nav,body.is-reading .sec,body.is-reading .contact,body.is-reading .kw-index,body.is-reading .site-foot,body.is-reading article:not(.is-open){display:none!important}
 body.is-reading .wrap{max-width:720px;padding:68px 20px 100px;min-height:100vh}
 body.is-reading article.is-open{margin:0;border-radius:16px;box-shadow:0 18px 50px var(--shadow)}
 body.is-reading article.is-open .read-cta{display:none}
@@ -195,10 +223,11 @@ body:not(.is-reading) article{display:flex;flex-direction:column;cursor:pointer}
 body:not(.is-reading) article:hover{transform:translateY(-3px);box-shadow:0 16px 40px var(--elev);border-color:color-mix(in srgb,var(--yel) 40%,var(--line))}
 body:not(.is-reading) article>img{width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;object-position:center;border-bottom:1.2px solid var(--soft);border-right:0;max-height:none;min-height:0}
 body:not(.is-reading) article .in{padding:18px 22px 20px;gap:10px;justify-content:flex-start}
-body:not(.is-reading) article .in>:not(.tag):not(h2):not(.lede):not(.read-cta):not(.acts){display:none!important}
+body:not(.is-reading) article .in>:not(.tag):not(h2):not(.lede):not(.read-cta):not(.acts):not(.kw-bar){display:none!important}
 body:not(.is-reading) article .in h2{font-size:20px;line-height:1.25}
 body:not(.is-reading) article .lede{display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14.5px;line-height:1.45;color:var(--grey)}
 body:not(.is-reading) article .acts{border-top:0;padding-top:2px;margin-top:2px}
+body:not(.is-reading) article .kw-bar .kw{padding:4px 8px;font-size:11.5px}
 body:not(.is-reading) .sec{margin:40px 0 14px}
 @media(max-width:700px){
   .hero{min-height:min(88vh,780px)}
@@ -244,8 +273,16 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
   </div>
   <div class="meta"><div><b>35</b>постов</div><div><b>1472</b>задачи за полтора года</div><div><b>2025—2026</b>период</div><div><b>Михаил Аймаутов</b>автор · ИТ Wollmer</div></div>
 </section>
-<nav><a href="#s1">Вход</a><a href="#s4">Возвраты</a><a href="#s8">Телефония</a><a href="#s11">Инфраструктура</a><a href="#s14">Доступы</a><a href="#s18">CRM и доставка</a><a href="#s23">Обращения</a><a href="#s26">Данные и ИИ</a><a href="#s32">Боты и планы</a><a href="#contact">Сотрудничество</a></nav>
-<p class="feed-hint">Список постов ниже — нажмите карточку или «Читать». В режиме чтения: Esc — к списку, ← → — соседние посты.</p>
+<nav><a href="#s1">Вход</a><a href="#s4">Возвраты</a><a href="#s8">Телефония</a><a href="#s11">Инфраструктура</a><a href="#s14">Доступы</a><a href="#s18">CRM и доставка</a><a href="#s23">Обращения</a><a href="#s26">Данные и ИИ</a><a href="#s32">Боты и планы</a><a href="#keywords">Темы</a><a href="#contact">Сотрудничество</a></nav>
+<p class="feed-hint">Список постов ниже — нажмите карточку или «Читать». В режиме чтения: Esc — к списку, ← → — соседние посты. Ключевые слова ведут к связанным статьям.</p>
+<div class="search-bar" id="searchBar">
+  <label for="postSearch">Поиск по ключевым словам и заголовкам</label>
+  <div class="search-row">
+    <input type="search" id="postSearch" placeholder="Например: CRM, телефония, ИИ, возвраты…" autocomplete="off" enterkeyhint="search">
+    <button type="button" class="search-clear" id="searchClear" hidden>Сбросить</button>
+  </div>
+  <div class="search-meta" id="searchMeta" aria-live="polite"></div>
+</div>
 <main class="wrap"><h2 class="sec" id="s1"><span>Вход</span></h2><article id="p1"><img src="covers/p01.png" alt="Зачем этот канал" loading="lazy" width="1200" height="630"><div class="in"><div class="tag"><span class="pill">Вход</span><span class="num">01</span></div><h2>Зачем этот канал</h2><p>На ревью нормальная практика — «давай за три минутки». И это правильно, у команды нет времени слушать, как я неделю искал причину.</p>
 <p>Но наружу тогда выходит только вывод: «сделали форму», «починили телефонию». А самое интересное остаётся за скобками — почему решение именно такое, какие были варианты и что сломалось по дороге.</p>
 <p>Вот про это и буду писать. Здесь можно подробно.</p>
@@ -943,6 +980,11 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
 <p>Меня в поздравлении назвали человеком, к которому приходят с болью и уходят с решением. Это очень точно про то, что мне нравится в работе. Но работает это только в обе стороны: без ваших подробных заявок половина этих задач так и осталась бы «ну там что-то глючит».</p>
 <p>Так что спасибо за поздравления — и спасибо за задачи. Продолжаем)</p></div></article>
 </main>
+<section class="kw-index" id="keywords" aria-label="Индекс по ключевым словам">
+  <h2>Индекс по темам</h2>
+  <p>Выберите ключевое слово — в ленте останутся только подходящие посты. Из статьи по тегу можно сразу открыть связанный разбор.</p>
+  <div class="kw-cloud" id="kwCloud"></div>
+</section>
 <section class="contact" id="contact" aria-label="Контакты и сотрудничество">
   <div class="contact-card">
     <h2>Сотрудничество и интеграции</h2>
@@ -975,6 +1017,49 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
   var toastEl = document.getElementById("toast");
   var toastTimer;
   var articles = Array.prototype.slice.call(document.querySelectorAll("article[id^='p']"));
+  var POST_KW = {
+    p1: ["блог", "кейсы", "Wollmer", "ИТ"],
+    p2: ["путь", "задачи", "рост", "статистика"],
+    p3: ["заявки", "SLA", "Битрикс24", "процесс"],
+    p4: ["возвраты", "автоматизация", "процесс", "CRM"],
+    p5: ["возвраты", "формы", "валидация", "реквизиты"],
+    p6: ["возвраты", "юридическое", "документы"],
+    p7: ["Интеграл", "возвраты", "интеграции", "грабли"],
+    p8: ["телефония", "звонки", "маршрутизация"],
+    p9: ["телефония", "распределение", "менеджеры"],
+    p10: ["телефония", "линии", "согласование"],
+    p11: ["сеть", "созвоны", "инфраструктура", "интернет"],
+    p12: ["сеть", "оборудование", "закупка", "инфраструктура"],
+    p13: ["бэкапы", "камеры", "серверная", "инфраструктура"],
+    p14: ["доступы", "админ-права", "безопасность"],
+    p15: ["доступы", "увольнение", "безопасность"],
+    p16: ["лицензии", "экономия", "SaaS"],
+    p17: ["API-ключи", "интеграции", "безопасность"],
+    p18: ["CRM", "заказы", "склад", "МойСклад"],
+    p19: ["доставка", "статусы", "CRM", "сверка"],
+    p20: ["доставка", "СДЭК", "службы доставки", "CRM"],
+    p21: ["CRM", "адреса", "данные"],
+    p22: ["тестовый заказ", "CRM", "проверка"],
+    p23: ["обращения", "мессенджеры", "интеграции"],
+    p24: ["WhatsApp", "Telegram", "WABA", "мессенджеры"],
+    p25: ["автоответ", "обращения", "забота"],
+    p26: ["ИИ", "качество звонков", "дашборд", "телефония"],
+    p27: ["ИИ", "промпт", "данные", "грабли"],
+    p28: ["ИИ", "AI-ассистент", "заявки", "Битрикс24"],
+    p29: ["ИИ", "автоматизация", "правила", "заявки"],
+    p30: ["робот", "автоматизация", "Битрикс24", "уведомления"],
+    p31: ["Вики", "данные", "база знаний"],
+    p32: ["Telegram", "бот", "интеграции", "сервисные центры"],
+    p33: ["файлы", "данные", "грабли", "хранение"],
+    p34: ["планы", "roadmap", "Wollmer"],
+    p35: ["итоги", "задачи", "статистика", "Wollmer"]
+  };
+
+  var searchInput = document.getElementById("postSearch");
+  var searchClear = document.getElementById("searchClear");
+  var searchMeta = document.getElementById("searchMeta");
+  var kwCloud = document.getElementById("kwCloud");
+  var activeFilter = "";
   var readerBar = document.getElementById("readerBar");
   var rbProg = document.getElementById("rbProg");
   var rbPos = document.getElementById("rbPos");
@@ -1146,6 +1231,164 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
     });
   }
 
+  function norm(s) {
+    return String(s || "").toLowerCase().replace(/ё/g, "е").trim();
+  }
+
+  function kwsOf(id) {
+    return POST_KW[id] || [];
+  }
+
+  function titleOf(article) {
+    var h = article.querySelector("h2");
+    return h ? h.textContent.trim() : article.id;
+  }
+
+  function articleMatches(article, q) {
+    if (!q) return true;
+    var nq = norm(q);
+    var title = norm(titleOf(article));
+    if (title.indexOf(nq) !== -1) return true;
+    var pill = article.querySelector(".pill");
+    if (pill && norm(pill.textContent).indexOf(nq) !== -1) return true;
+    return kwsOf(article.id).some(function (k) {
+      return norm(k).indexOf(nq) !== -1 || nq.indexOf(norm(k)) !== -1;
+    });
+  }
+
+  function relatedArticles(id, preferKw) {
+    var mine = kwsOf(id);
+    if (!mine.length) return [];
+    var scored = [];
+    articles.forEach(function (a) {
+      if (a.id === id) return;
+      var shared = kwsOf(a.id).filter(function (k) {
+        return mine.indexOf(k) !== -1;
+      });
+      if (!shared.length) return;
+      if (preferKw && shared.indexOf(preferKw) === -1) return;
+      scored.push({ article: a, shared: shared, score: shared.length });
+    });
+    scored.sort(function (a, b) { return b.score - a.score; });
+    return scored;
+  }
+
+  function setFilter(q, fromUi) {
+    activeFilter = (q || "").trim();
+    if (searchInput && fromUi !== false) searchInput.value = activeFilter;
+    if (searchClear) searchClear.hidden = !activeFilter;
+    var shown = 0;
+    articles.forEach(function (a) {
+      var ok = articleMatches(a, activeFilter);
+      a.classList.toggle("is-kw-hidden", !ok);
+      if (ok) shown += 1;
+    });
+    document.body.classList.toggle("is-filtering", !!activeFilter);
+    if (kwCloud) {
+      Array.prototype.forEach.call(kwCloud.querySelectorAll("button"), function (b) {
+        b.classList.toggle("on", activeFilter && norm(b.dataset.kw) === norm(activeFilter));
+      });
+    }
+    if (searchMeta) {
+      searchMeta.textContent = activeFilter
+        ? ("Найдено: " + shown + " из " + articles.length + " · тема «" + activeFilter + "»")
+        : "";
+    }
+  }
+
+  function applyKeyword(kw, opts) {
+    opts = opts || {};
+    if (document.body.classList.contains("is-reading")) closeReader(false);
+    setFilter(kw);
+    if (opts.scroll !== false) {
+      var target = document.getElementById("searchBar") || document.querySelector("main.wrap");
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    if (opts.hash !== false) {
+      var h = "#kw=" + encodeURIComponent(kw);
+      if (location.hash !== h) history.pushState({ kw: kw }, "", h);
+    }
+  }
+
+  function clearFilter(opts) {
+    opts = opts || {};
+    setFilter("");
+    if (opts.hash !== false && /^#kw=/i.test(location.hash)) {
+      history.pushState({ kw: null }, "", location.pathname + location.search);
+    }
+  }
+
+  function buildKwBar(article) {
+    var kws = kwsOf(article.id);
+    if (!kws.length) return null;
+    article.setAttribute("data-keywords", kws.join(", "));
+    var bar = document.createElement("div");
+    bar.className = "kw-bar";
+    bar.setAttribute("aria-label", "Ключевые слова");
+    kws.forEach(function (k) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "kw";
+      b.dataset.kw = k;
+      b.textContent = k;
+      b.title = "Найти статьи по теме «" + k + "»";
+      b.addEventListener("click", function (e) {
+        e.stopPropagation();
+        applyKeyword(k);
+      });
+      bar.appendChild(b);
+    });
+    return bar;
+  }
+
+  function buildRelated(article) {
+    var rows = relatedArticles(article.id).slice(0, 5);
+    if (!rows.length) return null;
+    var wrap = document.createElement("div");
+    wrap.className = "related";
+    wrap.innerHTML = '<div class="related-label">Связанные статьи</div>';
+    var list = document.createElement("div");
+    list.className = "related-list";
+    rows.forEach(function (row) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.innerHTML = titleOf(row.article) + "<span>" + row.shared.join(" · ") + "</span>";
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        openReader(row.article.id);
+      });
+      list.appendChild(btn);
+    });
+    wrap.appendChild(list);
+    return wrap;
+  }
+
+  function buildKeywordCloud() {
+    if (!kwCloud) return;
+    var map = {};
+    Object.keys(POST_KW).forEach(function (id) {
+      POST_KW[id].forEach(function (k) {
+        if (!map[k]) map[k] = 0;
+        map[k] += 1;
+      });
+    });
+    var keys = Object.keys(map).sort(function (a, b) {
+      return map[b] - map[a] || a.localeCompare(b, "ru");
+    });
+    kwCloud.innerHTML = "";
+    keys.forEach(function (k) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.dataset.kw = k;
+      b.innerHTML = k + ' <span class="n">' + map[k] + "</span>";
+      b.addEventListener("click", function () {
+        if (activeFilter && norm(activeFilter) === norm(k)) clearFilter();
+        else applyKeyword(k, { scroll: true });
+      });
+      kwCloud.appendChild(b);
+    });
+  }
+
   function indexOfId(id) {
     for (var i = 0; i < articles.length; i++) {
       if (articles[i].id === id) return i;
@@ -1250,9 +1493,15 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
   });
 
   window.addEventListener("popstate", function () {
-    var id = (location.hash || "").replace(/^#/, "");
-    if (/^p\d+$/i.test(id)) openReader(id, false);
-    else closeReader(false);
+    var raw = (location.hash || "").replace(/^#/, "");
+    if (/^p\d+$/i.test(raw)) openReader(raw, false);
+    else if (/^kw=/i.test(raw)) {
+      closeReader(false);
+      setFilter(decodeURIComponent(raw.slice(3)), true);
+    } else {
+      closeReader(false);
+      if (activeFilter) clearFilter({ hash: false });
+    }
   });
 
   articles.forEach(function (article) {
@@ -1311,6 +1560,16 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
     box.appendChild(reacts);
     wireReactions(article, reacts);
 
+    var kwBar = buildKwBar(article);
+    if (kwBar) {
+      var ctaEl = box.querySelector(".read-cta");
+      if (ctaEl) ctaEl.insertAdjacentElement("afterend", kwBar);
+      else box.insertBefore(kwBar, acts);
+    }
+
+    var related = buildRelated(article);
+    if (related) box.appendChild(related);
+
     var countEl = acts.querySelector(".n");
     var shareBtn = acts.querySelector(".share");
 
@@ -1326,7 +1585,7 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
 
     article.addEventListener("click", function (e) {
       if (document.body.classList.contains("is-reading")) return;
-      if (e.target.closest("a, button, .share, .theme-toggle, .reacts")) return;
+      if (e.target.closest("a, button, .share, .theme-toggle, .reacts, .kw-bar, .related")) return;
       openReader(article.id);
     });
 
@@ -1337,7 +1596,24 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
     });
   });
 
-  document.querySelectorAll("nav a[href^='#s']").forEach(function (a) {
+  if (searchInput) {
+    searchInput.addEventListener("input", function () {
+      setFilter(searchInput.value);
+      if (activeFilter) {
+        var h = "#kw=" + encodeURIComponent(activeFilter);
+        if (location.hash !== h) history.replaceState({ kw: activeFilter }, "", h);
+      } else if (/^#kw=/i.test(location.hash)) {
+        history.replaceState({ kw: null }, "", location.pathname + location.search);
+      }
+    });
+  }
+  if (searchClear) {
+    searchClear.addEventListener("click", function () { clearFilter(); });
+  }
+
+  buildKeywordCloud();
+
+  document.querySelectorAll("nav a[href^='#s'], nav a[href='#keywords'], nav a[href='#contact']").forEach(function (a) {
     a.addEventListener("click", function () {
       if (document.body.classList.contains("is-reading")) closeReader(false);
     });
@@ -1345,6 +1621,7 @@ body:not(.is-reading) .sec{margin:40px 0 14px}
 
   var boot = (location.hash || "").replace(/^#/, "");
   if (/^p\d+$/i.test(boot)) openReader(boot, false);
+  else if (/^kw=/i.test(boot)) setFilter(decodeURIComponent(boot.slice(3)), true);
 })();
 </script>
 </body></html>
