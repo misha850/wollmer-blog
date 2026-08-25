@@ -42,7 +42,7 @@
 @font-face{font-family:"LT Wave Text";src:url("fonts/LTWaveText-Regular.otf") format("opentype");font-weight:400;font-display:swap}
 @font-face{font-family:"LT Wave Text";src:url("fonts/LTWaveText-Medium.otf") format("opentype");font-weight:600;font-display:swap}
 :root{
-  --ink:#1A1B1C;--grey:#616569;--line:#CED2D5;--soft:#E3E0D6;--paper:#F1EEE4;--card:#F8F8F8;--yel:#FFC600;
+  --ink:#1A1B1C;--grey:#616569;--line:#CED2D5;--soft:#E3E0D6;--paper:#F1EEE4;--card:#FFFFFF;--yel:#FFC600;
   --header-ink:#1A1B1C;--shadow:rgba(26,27,28,.08);--elev:rgba(26,27,28,.12);
   color-scheme:light;
 }
@@ -167,9 +167,9 @@ body.is-reading .browse,body.is-reading .browse-nav-wrap{display:none!important}
 .tag .pills{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
 .sec{display:flex;align-items:center;gap:16px;margin:54px 0 18px;font-size:13.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);font-weight:600;font-family:"LT Wave Text",sans-serif}
 .sec::after{content:"";flex:1;height:1.2px;background:var(--line)}
-article{background:var(--card);border-radius:14px;overflow:hidden;margin-bottom:24px;scroll-margin-top:64px;border:1px solid transparent;transition:background-color .25s ease,border-color .25s ease,box-shadow .2s ease,transform .15s ease}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) article{border-color:rgba(255,255,255,.05)}}
-:root[data-theme="dark"] article{border-color:rgba(255,255,255,.05)}
+article{background:var(--card);border-radius:14px;overflow:hidden;margin-bottom:24px;scroll-margin-top:64px;border:1.2px solid var(--line);box-shadow:0 8px 28px var(--shadow);transition:background-color .25s ease,border-color .25s ease,box-shadow .2s ease,transform .15s ease}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) article{border-color:rgba(255,255,255,.1);box-shadow:0 10px 32px rgba(0,0,0,.35)}}
+:root[data-theme="dark"] article{border-color:rgba(255,255,255,.1);box-shadow:0 10px 32px rgba(0,0,0,.35)}
 article img{display:block;width:100%;height:auto;border-bottom:1.2px solid var(--soft)}
 .in{padding:26px 30px 32px;display:flex;flex-direction:column;gap:14px}
 .in>*{margin:0}
